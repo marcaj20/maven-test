@@ -5,18 +5,18 @@ pipeline {
     }
     environment {
     registry = '075341288730.dkr.ecr.us-east-1.amazonaws.com/devops-terra'
-    registryCredential = 'jenkins-ecr'
+    registryCredential = 'aws-credentials'
     dockerimage = ''
   }
     stages {
         stage('Checkout'){
             steps{
-                git branch: 'main', url: 'https://github.com/marcaj20/hello-world_2023.git'
+                git branch: 'main', url: 'https://github.com/marcaj20/maven-test.git'
             }
         }
         stage('Code Build') {
             steps {
-                sh 'mvn clean package'
+                sh 'mvn clean install package'
             }
         }
         stage('Test') {
